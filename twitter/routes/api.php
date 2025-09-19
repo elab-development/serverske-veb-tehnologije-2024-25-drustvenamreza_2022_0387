@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FollowController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +26,10 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
-   
+       Route::get('/follows', [FollowController::class, 'index']);
+    Route::get('/users/{user}/followers', [FollowController::class, 'followers']);
+    Route::get('/users/{user}/following', [FollowController::class, 'following']);
+    Route::post('/users/{user}/follow', [FollowController::class, 'follow']);
+    Route::delete('/users/{user}/follow', [FollowController::class, 'unfollow']);
+    Route::get('/users/{user}/follow-status', [FollowController::class, 'status']);
 });
