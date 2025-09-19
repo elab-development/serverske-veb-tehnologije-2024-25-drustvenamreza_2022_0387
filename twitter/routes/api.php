@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminExternalStatsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
@@ -41,4 +42,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('comments', CommentController::class)
         ->only(['index', 'store', 'update', 'destroy']);
 
+    Route::get('/admin/stats/hn-tags', [AdminExternalStatsController::class, 'hnPopularKeywords']);
+    Route::get('/admin/stats/guardian-tags', [AdminExternalStatsController::class, 'guardianPopularTags']);
 });
