@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/users/{user}/follow', [FollowController::class, 'follow']);
     Route::delete('/users/{user}/follow', [FollowController::class, 'unfollow']);
     Route::get('/users/{user}/follow-status', [FollowController::class, 'status']);
+
+    Route::resource('posts', PostController::class)
+        ->only(['index', 'show', 'store', 'update', 'destroy']);
+
 });
