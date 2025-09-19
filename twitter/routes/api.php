@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
@@ -36,5 +37,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('posts', PostController::class)
         ->only(['index', 'show', 'store', 'update', 'destroy']);
+
+    Route::resource('comments', CommentController::class)
+        ->only(['index', 'store', 'update', 'destroy']);
 
 });
