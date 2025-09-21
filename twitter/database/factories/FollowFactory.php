@@ -18,6 +18,9 @@ class FollowFactory extends Factory
     {
         return [
             //
+            'user_id'=>User::factory(),
+            'content'=> $this->faker->realTextBetween(40,180),
+
         ];
     }
 }
