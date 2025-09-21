@@ -55,7 +55,7 @@ class PostController extends Controller
             $userId,
             $request
         ) {
-            $q = \App\Models\Post::query()
+            $q = Post::query()
                 ->with(['user'])
                 ->withCount('comments');
 
